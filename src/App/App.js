@@ -129,9 +129,9 @@ class App extends PureComponent {
                 asyncFn("awesome").then((result) => {
                   console.info(result)
                 }).catch((err) => {
-                  console.error(err)
+                  console.error("🔥")
                 }).finally(() => {
-                  console.info("🔥")
+                  console.info("🐱")
                 })
               `}
             </code>
@@ -140,7 +140,7 @@ class App extends PureComponent {
             <code>
               {`
                 // 🦄
-                // 🔥
+                // 🐱
               `}
             </code>
           </pre>
@@ -290,6 +290,15 @@ class App extends PureComponent {
         </Slide>
         <Slide>
           <h2>async/await</h2>
+          <pre>
+            <code>
+              {`
+                await asyncFn("🦄")
+
+                // 🌈
+              `}
+            </code>
+          </pre>
           <span
             className="fragment"
             role="img"
@@ -313,6 +322,64 @@ class App extends PureComponent {
             <li>Firefox 52</li>
             <li>Safari 10.1</li>
           </ul>
+        </Slide>
+        <Slide>
+          <h2>transpilers</h2>
+          <p>async / await (ES2017)</p>
+          <p>&darr;</p>
+          <p>generator (ES2015)</p>
+          <p>&darr;</p>
+          <p>regenerator (ES5)</p>
+        </Slide>
+        <Slide>
+          <h2>flow control</h2>
+          <h3>for, while, map, reduce, …</h3>
+          <pre>
+            <code>
+              {`
+                var emoji = ["awesome", "🦄"]
+
+                for (var i = 0; i < emoji.length; i++) {
+                  await asyncFn(emoji[i])
+                }
+
+                console.info("🐱")
+              `}
+            </code>
+          </pre>
+          <pre className="fragment">
+            <code>
+              {`
+                // 🦄
+                // 🌈
+                // 🐱
+              `}
+            </code>
+          </pre>
+        </Slide>
+        <Slide>
+          <h2>error handling</h2>
+          <pre>
+            <code>
+              {`
+                try {
+                  await asyncFn("🦄")
+                } catch (err) {
+                  console.error("🔥")
+                } finally {
+                  console.info("🐱")
+                }
+              `}
+            </code>
+          </pre>
+          <pre className="fragment">
+            <code>
+              {`
+                // 🌈
+                // 🐱
+              `}
+            </code>
+          </pre>
         </Slide>
         <Slide>https://github.com/Zertz/async</Slide>
       </Slides>
