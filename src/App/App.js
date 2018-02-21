@@ -27,8 +27,8 @@ class App extends PureComponent {
       <Slides>
         <Slide>
           <h1>Pier-Luc</h1>
-          <h2>Node.js ~0.10</h2>
-          <h3>Classcraft (Meteor + React)</h3>
+          <h2 className="fragment">Node.js ~0.10</h2>
+          <h3 className="fragment">Classcraft (Meteor + React)</h3>
         </Slide>
         <Slide>
           <h1>async</h1>
