@@ -15,10 +15,14 @@
 
 ### Promises
 
+* [Promise.race use cases](https://stackoverflow.com/questions/46376432/)
+
 ### Generators
 
+* [regenerator](https://github.com/facebook/regenerator)
 * [With ES7 And Beyond, Do You Need To Know ES6 Generators?](https://derickbailey.com/2017/04/19/with-es7-and-beyond-do-you-need-to-know-es6-generators/)
 
 ### async/await
 
+* [Can I use](https://caniuse.com/#feat=async-functions)
 * [Async iterators and generators](https://jakearchibald.com/2017/async-iterators-and-generators/)

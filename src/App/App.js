@@ -8,12 +8,6 @@ import Slide from "../Slide";
 import Slides from "../Slides";
 
 class App extends PureComponent {
-  centerStyle = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center"
-  };
-
   emojiStyle = {
     fontSize: "96px"
   };
@@ -26,9 +20,11 @@ class App extends PureComponent {
     return (
       <Slides>
         <Slide>
-          <h1>Pier-Luc</h1>
-          <h2 className="fragment">Node.js ~0.10</h2>
-          <h3 className="fragment">Classcraft (Meteor + React)</h3>
+          <span role="img" aria-label="wave" style={this.emojiStyle}>
+            👋
+          </span>
+          <h2 className="fragment">Pier-Luc</h2>
+          <h4 className="fragment">Classcraft (Meteor + React)</h4>
         </Slide>
         <Slide>
           <h1>async</h1>
@@ -67,7 +63,7 @@ class App extends PureComponent {
           </span>
         </Slide>
         <Slide>
-          <h2>callback</h2>
+          <h2>Callback</h2>
           <pre>
             <code>
               {`
@@ -132,19 +128,25 @@ class App extends PureComponent {
           >
             😭
           </span>
-          <p className="fragment">1 fonction, 1 error handler</p>
         </Slide>
         <Slide>
-          <h2>Promise</h2>
+          <h1>Promise</h1>
+        </Slide>
+        <Slide>
           <pre>
             <code>
               {`
-                asyncFn("awesome").then((result) => {
-                  console.info(result)
-                }).catch((err) => {
-                  console.error("🔥")
-                }).finally(() => {
-                  console.info("🐱")
+                // Librairie
+                const promise = new Promise((resolve, reject) => {
+                  setTimeout(() => {
+                    if (Math.random() > 0.5) {
+                      reject(new Error("🔥"))
+
+                      return
+                    }
+
+                    resolve("🦄")
+                  }, 1000)
                 })
               `}
             </code>
@@ -152,14 +154,20 @@ class App extends PureComponent {
           <pre className="fragment">
             <code>
               {`
-                // 🦄
-                // 🐱
+                // Application
+                promise.then((result) => {
+                  console.info(result)
+                }).catch((err) => {
+                  console.error(err)
+                }).finally(() => {
+                  console.info("🐱")
+                })
               `}
             </code>
           </pre>
         </Slide>
         <Slide>
-          <h2>…finally?</h2>
+          <h2>finally*</h2>
           <ul>
             <li>
               <p>V8 6.3</p>
@@ -187,9 +195,9 @@ class App extends PureComponent {
                 asyncFn("awesome").then((result) => {
                   return asyncFn(result)
                 }).then((result) => {
+                  return asyncFn(result)
+                }).then((result) => {
                   console.info(result)
-                }).catch((err) => {
-                  console.error(err)
                 })
               `}
             </code>
@@ -197,7 +205,7 @@ class App extends PureComponent {
           <pre className="fragment">
             <code>
               {`
-                // 🌈
+                // 🐱
               `}
             </code>
           </pre>
@@ -207,9 +215,7 @@ class App extends PureComponent {
           <pre>
             <code>
               {`
-                const awesome = ["🦄", "🌈"]
-
-                awesome.reduce((promise, emoji) => {
+                ["🦄", "🌈"].reduce((promise, emoji) => {
                   return promise.then(() => asyncFn(emoji))
                 }, Promise.resolve())
               `}
@@ -226,8 +232,6 @@ class App extends PureComponent {
                   asyncFn("🦄")
                 ]).then((result) => {
                   console.info(result)
-                }).catch((err) => {
-                  console.error(err)
                 })
               `}
             </code>
@@ -250,8 +254,6 @@ class App extends PureComponent {
                   asyncFn("🦄")
                 ]).then((result) => {
                   console.info(result)
-                }).catch((err) => {
-                  console.error(err)
                 })
               `}
             </code>
@@ -263,22 +265,41 @@ class App extends PureComponent {
               `}
             </code>
           </pre>
-          <p>https://stackoverflow.com/questions/46376432/</p>
         </Slide>
         <Slide>
           <h2>error handling</h2>
           <span
             className="fragment"
             role="img"
-            aria-label="cry"
+            aria-label="happy"
             style={this.emojiStyle}
           >
             🙃
           </span>
-          <p className="fragment">n functions, 1 error handler</p>
+          <pre className="fragment">
+            <code>
+              {`
+                Promise.reject(new Error("🔥")).catch((err) => {
+                  console.error(err)
+                })
+              `}
+            </code>
+          </pre>
+          <pre className="fragment">
+            <code>
+              {`
+                // 🔥
+              `}
+            </code>
+          </pre>
         </Slide>
         <Slide>
           <h2>generators</h2>
+          <h1 className="fragment">Super important!</h1>
+          <h3 className="fragment">…mais</h3>
+        </Slide>
+        <Slide>
+          <h2>function*</h2>
           <pre>
             <code>
               {`
@@ -334,15 +355,14 @@ class App extends PureComponent {
           </pre>
         </Slide>
         <Slide>
-          <h1>Super important!</h1>
-          <h2 className="fragment">…mais</h2>
+          <h2>expérience</h2>
           <span
             className="fragment"
             role="img"
-            aria-label="squirrel"
+            aria-label="cry"
             style={this.emojiStyle}
           >
-            🐿
+            😭
           </span>
         </Slide>
         <Slide>
@@ -350,8 +370,15 @@ class App extends PureComponent {
           <pre>
             <code>
               {`
-                await asyncFn("🦄")
+                const result = await asyncFn("🦄")
 
+                console.info(result)
+              `}
+            </code>
+          </pre>
+          <pre className="fragment">
+            <code>
+              {`
                 // 🌈
               `}
             </code>
@@ -359,7 +386,7 @@ class App extends PureComponent {
           <span
             className="fragment"
             role="img"
-            aria-label="thinking"
+            aria-label="heart-eyes"
             style={this.emojiStyle}
           >
             😍
@@ -379,7 +406,6 @@ class App extends PureComponent {
             <li>Firefox 52</li>
             <li>Safari 10.1 (iOS 10.3)</li>
           </ul>
-          <p>https://caniuse.com/#feat=async-functions</p>
         </Slide>
         <Slide>
           <h2>transpilers</h2>
@@ -401,8 +427,9 @@ class App extends PureComponent {
           </span>
         </Slide>
         <Slide>
-          <h2>for, while, …</h2>
-          <pre>
+          <h2>série</h2>
+          <h3>for, while, …</h3>
+          <pre className="fragment">
             <code>
               {`
                 const emojis = ["awesome", "🦄"]
@@ -426,35 +453,9 @@ class App extends PureComponent {
           </pre>
         </Slide>
         <Slide>
-          <h2>map, reduce, …</h2>
-          <pre>
-            <code>
-              {`
-                const emojis = ["awesome", "🦄"]
-
-                emojis.map(async (emoji) => {
-                  const result = await asyncFn(emoji)
-
-                  console.info(result)
-                })
-
-                console.info("🐱")
-              `}
-            </code>
-          </pre>
+          <h2>parallèle</h2>
+          <h3>Promise!</h3>
           <pre className="fragment">
-            <code>
-              {`
-                // 🦄
-                // 🌈
-                // 🐱
-              `}
-            </code>
-          </pre>
-        </Slide>
-        <Slide>
-          <h2>Promise!</h2>
-          <pre>
             <code>
               {`
                 const result = await Promise.all([
@@ -479,7 +480,7 @@ class App extends PureComponent {
         <Slide>
           <h2>async iterators</h2>
           <h3>for…of</h3>
-          <pre>
+          <pre className="fragment">
             <code>
               {`
                 const promises = [
@@ -506,7 +507,31 @@ class App extends PureComponent {
           </pre>
         </Slide>
         <Slide>
+          <h2>support</h2>
+          <ul>
+            <li>
+              <p>V8 6.3</p>
+              <ul>
+                <li>Chrome 63</li>
+                <li>Node.js (master)</li>
+              </ul>
+            </li>
+            <li>Firefox 57</li>
+          </ul>
+        </Slide>
+        <Slide>
           <h2>error handling</h2>
+          <span
+            className="fragment"
+            role="img"
+            aria-label="smile"
+            style={this.emojiStyle}
+          >
+            😃
+          </span>
+        </Slide>
+        <Slide>
+          <h2>old school</h2>
           <pre>
             <code>
               {`
@@ -530,10 +555,8 @@ class App extends PureComponent {
             </code>
           </pre>
         </Slide>
-        <Slide>
-          <h2>code!</h2>
-        </Slide>
-        <Slide>https://github.com/Zertz/async</Slide>
+        <Slide>Code?</Slide>
+        <Slide>https://github.com/Zertz/slides-async</Slide>
       </Slides>
     );
   }
