@@ -1,7 +1,6 @@
 {
   "name": "slides-async",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "prettier": "^1.10.2",
     "react": "^16.2.0",
